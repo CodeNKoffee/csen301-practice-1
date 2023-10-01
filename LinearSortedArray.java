@@ -7,7 +7,7 @@ public class LinearSortedArray {
         size = 0;
     }
 
-    // a) Insert a new element in its correct position in the array.
+    // Insert a new element in its correct position in the array.
     public void orderedInsert(int x) {
         if (size == 0) {
             array[0] = x;
@@ -29,7 +29,7 @@ public class LinearSortedArray {
         size++;
     }
 
-    // b) Iterative binary search to find an element's position.
+    // Iterative binary search to find an element's position.
     public int binarySearchIter(int x) {
         int left = 0;
         int right = size - 1;
@@ -49,7 +49,7 @@ public class LinearSortedArray {
         return -1; // Element not found.
     }
 
-    // c) Recursive binary search to find an element's position.
+    // Recursive binary search to find an element's position.
     public int binarySearchRec(int x) {
         return binarySearchRec(x, 0, size - 1);
     }
@@ -70,7 +70,7 @@ public class LinearSortedArray {
         return -1; // Element not found.
     }
 
-    // d) Delete a specific element from the array.
+    // Delete a specific element from the array.
     public void delete(int x) {
         int index = binarySearchIter(x);
         if (index != -1) {
@@ -79,5 +79,41 @@ public class LinearSortedArray {
             }
             size--;
         }
+    }
+
+    // Testing method to print the array elements.
+    public void printArray() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        LinearSortedArray sortedArray = new LinearSortedArray(10);
+
+        // Insert elements in sorted order.
+        sortedArray.orderedInsert(10);
+        sortedArray.orderedInsert(20);
+        sortedArray.orderedInsert(30);
+        sortedArray.orderedInsert(40);
+        sortedArray.orderedInsert(50);
+
+        // Print the array.
+        sortedArray.printArray();
+
+        // Perform binary search.
+        int searchValue = 30;
+        int resultIter = sortedArray.binarySearchIter(searchValue);
+        int resultRec = sortedArray.binarySearchRec(searchValue);
+
+        System.out.println("Iterative Binary Search Result: " + resultIter);
+        System.out.println("Recursive Binary Search Result: " + resultRec);
+
+        // Delete an element.
+        sortedArray.delete(30);
+
+        // Print the updated array.
+        sortedArray.printArray();
     }
 }
